@@ -2,8 +2,7 @@
 
 import { useState } from 'react';
 import { api } from "../../convex/_generated/api";
-import { useQuery, useMutation, Authenticated, Unauthenticated } from 'convex/react';
-import { SignInButton } from "@clerk/nextjs";
+import { useQuery, useMutation } from 'convex/react';
 
 // Main functional component
 export default function Home() {
@@ -25,8 +24,6 @@ export default function Home() {
   };
 
   return (
-    <>
-    <Authenticated>
     <div>
       {/* Map over messages to render them */}
       {messages?.map((message, index) => (
@@ -48,10 +45,5 @@ export default function Home() {
         <button type="submit">Send</button>
       </form>
     </div>
-    </Authenticated>
-    <Unauthenticated>
-      < SignInButton />
-    </Unauthenticated>
-    </>
   );
 }
