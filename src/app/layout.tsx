@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ClerkProvider>
+        <ClerkProvider dynamic>
         <ConvexClientProvider>{children}</ConvexClientProvider>
         </ClerkProvider>
       </body>
