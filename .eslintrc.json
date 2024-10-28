@@ -1,3 +1,14 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "extends": ["next/core-web-vitals", "next/typescript"],
+  "plugins": ["spellcheck"],
+  "rules": {
+    "spellcheck/spell-checker": [
+      "warn",
+      {
+        "skipWords": ["updateStatus"],
+        "skipIfMatch": ["^api\\."], // Ignore patterns with 'api.'
+        "minLength": 3
+      }
+    ]
+  }
 }
