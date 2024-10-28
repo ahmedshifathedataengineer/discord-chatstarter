@@ -42,9 +42,10 @@ export const createFriendRequest = authenticatedMutation({
         .query("users")
         .withIndex("by_username", (q) => q.eq("username", username))
         .unique();
+
         if (!user) {
             throw new Error("User not found");
-        } else if (user._id == ctx.user._id) {
+        } else if (user._id === ctx.user._id) {
             throw new Error("Cannot add yourself");
         }
         await ctx.db.insert("friends", {
@@ -52,6 +53,7 @@ export const createFriendRequest = authenticatedMutation({
             user2: user._id,
             status: "pending",
         });
+        
     },
 });
 

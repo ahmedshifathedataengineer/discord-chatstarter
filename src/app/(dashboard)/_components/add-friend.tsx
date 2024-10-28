@@ -19,7 +19,7 @@ import { toast } from "sonner";
 export function AddFriend() {
     const [open, setOpen] = useState(false); 
     const [username, setUsername] = useState(""); 
-    const createFriendRequest = useMutation(api.functions.createFriendRequest);
+    const createFriendRequest = useMutation(api.functions.friend.createFriendRequest);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
