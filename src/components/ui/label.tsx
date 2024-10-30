@@ -9,7 +9,7 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
     <label ref={ref} className="label" {...props}>
       {children}
     </label>
-  )
+  ),
 );
 
 Label.displayName = "Label";

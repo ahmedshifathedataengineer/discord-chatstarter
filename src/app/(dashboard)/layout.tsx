@@ -2,7 +2,7 @@
 
 import { RedirectToSignIn } from "@clerk/nextjs";
 import { Authenticated, Unauthenticated } from "convex/react";
-import { DashboardSidebar} from "./_components/sidebar";
+import { DashboardSidebar } from "./_components/sidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
 
 export default function DashBoardLayout({
@@ -25,4 +25,3 @@ export default function DashBoardLayout({
     </>
   );
 }
-

@@ -1,8 +1,8 @@
 export default {
-    providers: [
-      {
-        domain: "https://assured-woodcock-21.clerk.accounts.dev",
-        applicationID: "convex",
-      },
-    ]
-  };
+  providers: [
+    {
+      domain: "https://assured-woodcock-21.clerk.accounts.dev",
+      applicationID: "convex",
+    },
+  ],
+};
