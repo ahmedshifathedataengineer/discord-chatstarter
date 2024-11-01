@@ -14,7 +14,6 @@ import { cn } from "@/lib/utils";
 
 export function PendingFriendsList() {
   const friends = useQuery(api.functions.friend.listPending);
-  // cspell:ignore updateStatus
   const updateStatus = useMutation(api.functions.friend.updateStatus);
 
   return (
@@ -58,7 +57,6 @@ export function PendingFriendsList() {
 
 export function AcceptedFriendsList() {
   const friends = useQuery(api.functions.friend.listAccepted);
-  // cspell:ignore updateStatus
   const updateStatus = useMutation(api.functions.friend.updateStatus);
 
   return (

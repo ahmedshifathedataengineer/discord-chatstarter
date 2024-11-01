@@ -10,7 +10,7 @@ export const listPending = authenticatedQuery({
     const friends = await ctx.db
       .query("friends")
       .withIndex("by_user2_status", (q) =>
-        q.eq("user2", ctx.user._id).eq("status", "pending"),
+        q.eq("user2", ctx.user._id).eq("status", "pending")
       )
       .collect();
     return await mapWithUsers(ctx, friends, "user1");
@@ -24,13 +24,13 @@ export const listAccepted = authenticatedQuery({
     const friends1 = await ctx.db
       .query("friends")
       .withIndex("by_user1_status", (q) =>
-        q.eq("user1", ctx.user._id).eq("status", "accepted"),
+        q.eq("user1", ctx.user._id).eq("status", "accepted")
       )
       .collect();
     const friends2 = await ctx.db
       .query("friends")
       .withIndex("by_user2_status", (q) =>
-        q.eq("user2", ctx.user._id).eq("status", "accepted"),
+        q.eq("user2", ctx.user._id).eq("status", "accepted")
       )
       .collect();
     const friendsWithUser1 = await mapWithUsers(ctx, friends1, "user2");
@@ -61,14 +61,14 @@ export const createFriendRequest = authenticatedMutation({
     const existingRequest1 = await ctx.db
       .query("friends")
       .withIndex("by_users", (q) =>
-        q.eq("user1", ctx.user._id).eq("user2", user._id),
+        q.eq("user1", ctx.user._id).eq("user2", user._id)
       )
       .unique();
 
     const existingRequest2 = await ctx.db
       .query("friends")
       .withIndex("by_users", (q) =>
-        q.eq("user1", user._id).eq("user2", ctx.user._id),
+        q.eq("user1", user._id).eq("user2", ctx.user._id)
       )
       .unique();
 
@@ -116,14 +116,14 @@ const mapWithUsers = async <
 >(
   ctx: QueryCtx,
   items: T[],
-  key: K,
+  key: K
 ) => {
   const result = await Promise.allSettled(
     items.map(async (item) => {
       const user = await ctx.db.get(item[key]);
       if (!user) throw new Error("User not found");
       return { ...item, user };
-    }),
+    })
   );
   return result.filter((r) => r.status === "fulfilled").map((r) => r.value);
 };

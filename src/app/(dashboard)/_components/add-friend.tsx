@@ -1,3 +1,4 @@
+import React, { useState, useRef, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -7,8 +8,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import React, { useState, useRef, useEffect } from "react";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -23,7 +22,6 @@ export function AddFriend() {
     api.functions.friend.createFriendRequest
   );
 
-  // Ref for focusing the input when dialog opens
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
@@ -34,7 +32,7 @@ export function AddFriend() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Submitting friend request:", username);
+    console.log("Attempting to send friend request:", username);
 
     try {
       await createFriendRequest({ username });
@@ -43,23 +41,10 @@ export function AddFriend() {
       setUsername(""); // Reset username field after submission
     } catch (error) {
       console.error("Error sending friend request:", error);
-
-      if (error instanceof Error) {
-        // Provide specific error messages based on status code
-        if (error.message.includes("404")) {
-          toast.error("User not found", {
-            description: "Please check the username and try again.",
-          });
-        } else {
-          toast.error("Failed to send friend request", {
-            description: error.message,
-          });
-        }
-      } else {
-        toast.error("Failed to send friend request", {
-          description: "An unknown error occurred",
-        });
-      }
+      toast.error("Failed to send friend request", {
+        description:
+          error instanceof Error ? error.message : "An unknown error occurred",
+      });
     }
   };
 
@@ -81,10 +66,9 @@ export function AddFriend() {
             <Input
               id="username"
               type="text"
-              ref={inputRef} // Attach ref for auto-focus
+              ref={inputRef}
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              aria-label="Username for adding a friend"
               placeholder="Enter friend's username"
             />
           </div>
