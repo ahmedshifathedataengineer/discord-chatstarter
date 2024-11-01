@@ -16,7 +16,7 @@ export default defineSchema({
     status: v.union(
       v.literal("pending"),
       v.literal("accepted"),
-      v.literal("rejected"),
+      v.literal("rejected")
     ),
   })
     .index("by_user1_status", ["user1", "status"])
